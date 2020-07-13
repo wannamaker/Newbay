@@ -1,4 +1,4 @@
-# Newbay
+# NewBay
 
 - [Overview](#overview)
 - [MVP](#mvp)
@@ -20,48 +20,40 @@
 
 ## Overview
 
-_**Project Title** is lorem ipsum dolor sit amet. Phasellus dapibus fermentum risus vitae bibendum. Integer vel ipsum mollis odio sollicitudin ornare eu vel ex. In quis fringilla velit, ac maximus quam. Etiam eget placerat neque. Aenean faucibus sem non nisi lobortis ullamcorper._
-
+_**NewBay** is an app that connects sellers to buyers. A seller creates her store and add all products she wants to sell from this store. A product has a name, one or more picture(s),a price, a description and/or reviews from previous buyers. A buyer can see all the products, add any of them to their cart, but will be able to complete the buying processs only after she has logged in or signup. After the buyer has paid for a product, the seller will receive a notification about the purchase with the product info and the buyer address info.
 
 <br>
 
 ## MVP
 
-> The Minimum Viable Product should be a well-planned, easily-communicated product, ensuring that the client's deliverable will be achievable and meet specifications within the time frame estimated.
-
-_The **Project Title** MVP lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dapibus fermentum risus vitae bibendum. Integer vel ipsum mollis odio sollicitudin ornare eu vel ex. In quis fringilla velit, ac maximus quam. Etiam eget placerat neque. Aenean faucibus sem non nisi lobortis ullamcorper._
+_The **NewBay** A working app that shows products that were added by sellers where a buyer can add one of them to her cart and purchased later._
 
 <br>
 
 ### Goals
 
-- _Lorem ipsum, dolor sit amet,_
-- _consectetur adipiscing elit._
-- _Phasellus dapibus fermentum risus vitae bibendum._
-- _Integer vel ipsum mollis odio sollicitudin ornare eu vel ex._
-- _etc._
+- _Display products from the sellers,_
+- _Able to create transaction and buying process._
+
 
 <br>
 
 ### Libraries and Dependencies
 
-> Use this section to list all supporting libraries and dependencies, and their role in the project. Below is an example - this needs to be replaced!
-
 |     Library      | Description                                |
 | :--------------: | :----------------------------------------- |
-|      React       | _Lorem ipsum dolor sit amet, consectetur._ |
-|   React Router   | _Lorem ipsum dolor sit amet, consectetur._ |
-| React SemanticUI | _Lorem ipsum dolor sit amet, consectetur._ |
-|     Express      | _Lorem ipsum dolor sit amet, consectetur._ |
-|  Express Router  | _Lorem ipsum dolor sit amet, consectetur._ |
+|      React       | _To create the front-end of the app._ |
+|   React Router   | _To enable navigations between pages._ |
+|   Material UI    | _ Third party UI library._ |
+|  Ruby on Rails   | _Back-end framework used._ |
+|      Axios       | _For API calls    ._ |
+
 
 <br>
 
 ### Client (Front End)
 
 #### Wireframes
-
-> Use the Wireframes section to display desktop, tablet and mobile views. No hand-drawn wireframes. Use a tool like wireframe.cc, Whimsical or AdobeXD
 
 ![Dummy Link](url)
 
@@ -93,8 +85,6 @@ _The **Project Title** MVP lorem ipsum dolor sit amet, consectetur adipiscing el
 
 #### Component Hierarchy
 
-> Use this section to define your React components and the data architecture of your app. This should be a reflection of how you expect your directory/file tree to look like. 
-
 ``` structure
 
 src
@@ -105,7 +95,19 @@ src
       |__ mockups
 |__ components/
       |__ Header.jsx
+      |__ Navigation.jsx
+      |__ Footer.jsx
+      |__ Layout.jsx
+      |__ Account.jsx
+      |__ Products.jsx
+      |__ Product.jsx
+      |__ Cart.jsx
+      |__ Seller.jsx
+      |__ Buyer.jsx
 |__ services/
+      |__ ApiHelper.js
+      |__ User.js
+      |__ Products.js
 
 ```
 
@@ -117,21 +119,31 @@ src
 | :----------: | :--------: | :---: | :---: | :--------------------------------------------------------------- |
 |    Header    | functional |   n   |   n   | _The header will contain the navigation and logo._               |
 |  Navigation  | functional |   n   |   n   | _The navigation will provide a link to each of the pages._       |
-|   Gallery    |   class    |   y   |   n   | _The gallery will render the posts using cards in flexbox._      |
-| Gallery Card | functional |   n   |   y   | _The cards will render the post info via props._                 |
-|    Footer    | functional |   n   |   n   | _The footer will show info about me and a link to my portfolio._ |
+|   Footer     |   class    |   y   |   n   | _The footer will render the contain the info related to the footer._      |
+|    Layout    | functional |   n   |   y   | _The layout will contain the header info the Navigation and the footer._ |
+|    Account   | functional |   n   |   n   | _The account will user signup or log in._ |
+|    Products  | functional |   n   |   n   | _The products will display all the products._               |
+|    Product   | functional |   n   |   n   | _The product will display one product though props._       |
+|    Cart      |   class    |   y   |   n   | _The cart will allow a buyer to buy._      |
+|    Seller    | functional |   n   |   y   | _The seller will be a landing page for the seller ang give her update about sell._ |
+|    Buyer     | functional |   n   |   n   | _The buyer will see purchase updates and past purchases._ |
+
 
 #### Time Estimates
 
-> Use this section to estimate the time necessary to build out each of the components you've described above.
-
 | Task                | Priority | Estimated Time | Time Invested | Actual Time |
 | ------------------- | :------: | :------------: | :-----------: | :---------: |
-| Add Contact Form    |    L     |     3 hrs      |     2 hrs     |    3 hrs    |
-| Create CRUD Actions |    H     |     3 hrs      |     1 hrs     |     TBD     |
-| TOTAL               |          |     6 hrs      |     3 hrs     |     TBD     |
+| Create lackend      |    H     |     16 hrs      |     - hrs     |    TBD    |
+| Create services files |    H     |     3 hrs      |     - hrs     |     TBD     |
+| Create layout       |   H      |     3 hrs       |     - hrs     |     TBD    |
+| Create users       |   H      |     4 hrs       |     - hrs     |     TBD    |
+| Create product      |   H      |     1 hrs       |     - hrs     |     TBD    |
+| Create products display |   H      |     3 hrs       |     - hrs     |     TBD    |
+| Create cart       |   H      |     6 hrs       |     - hrs     |     TBD    |
+| Create seller page       |   H      |     3 hrs       |     - hrs     |     TBD    |
+| Create buyer page       |   H      |     3 hrs       |     - hrs     |     TBD    |
+| TOTAL               |      H    |     42 hrs      |     3 hrs     |     TBD     |
 
-> _Why is this necessary? Time frames are key to the development cycle. You have limited time to code your app, and your estimates can then be used to evaluate possibilities of your MVP and post-MVP based on time needed. It's best you assume an additional hour for each component, as well as a few hours added to the total time, to play it safe._
 
 <br>
 
@@ -146,15 +158,17 @@ src
 ***
 
 ## Post-MVP
-
-> Use this section to document ideas you've had that would be fun (or necessary) for your Post-MVP. This will be helpful when you return to your project after graduation!
+- Add reviews
 
 ***
 
 ## Code Showcase
 
-> Use this section to include a brief code snippet of functionality that you are proud of and a brief description.
+```
+```
 
 ## Code Issues & Resolutions
 
-> Use this section to list of all major issues encountered and their resolution.
+```
+```
+
