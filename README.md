@@ -132,7 +132,7 @@ src
 
 #### ERD Model
 
-[NewBay ERD] https://i.imgur.com/dqnaYHq.png
+[NewBay ERD] https://i.imgur.com/zhHHhvN.png
 
 <br>
 
