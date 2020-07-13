@@ -55,29 +55,10 @@ _The **NewBay** A working app that shows products that were added by sellers whe
 
 #### Wireframes
 
-![Dummy Link](url)
+https://i.imgur.com/sCJeASG.png
 
 - Desktop Landing
 
-![Dummy Link](url)
-
-- Desktop Hero
-
-![Dummy Link](url)
-
-- Resource Index
-
-![Dummy Link](url)
-
-- Resource Show
-
-![Dummy Link](url)
-
-- Tablet Resource Index
-
-![Dummy Link](url)
-
-- Mobile Resource Index
 
 #### Component Tree
 
