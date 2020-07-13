@@ -142,7 +142,7 @@ src
 | Create cart       |   H      |     6 hrs       |     - hrs     |     TBD    |
 | Create seller page       |   H      |     3 hrs       |     - hrs     |     TBD    |
 | Create buyer page       |   H      |     3 hrs       |     - hrs     |     TBD    |
-| TOTAL               |      H    |     42 hrs      |     3 hrs     |     TBD     |
+| TOTAL               |      H    |     42 hrs      |     - hrs     |     TBD     |
 
 
 <br>
