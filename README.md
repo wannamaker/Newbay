@@ -159,6 +159,7 @@ src
 
 ## Post-MVP
 - Add reviews
+- Search for products
 
 ***
 
