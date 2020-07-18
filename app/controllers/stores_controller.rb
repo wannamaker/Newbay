@@ -6,8 +6,14 @@ class StoresController < ApplicationController
    def index
     @stores = Store.all
 
-    render json: @stores
+    render json: @stores, include: :user
   end
+
+  # def index_by_user
+  #   @stores = Store.all
+  #   @store.user = @current_user
+  #   render json: @stores
+  # end
 
   # GET /stores/1
   def show
@@ -17,6 +23,7 @@ class StoresController < ApplicationController
   # POST /stores
   def create
     @store = Store.new(store_params)
+    @store.user = @current_user
        if @store.save
            render json: @store, status: :created
         else
@@ -47,6 +54,6 @@ class StoresController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def store_params
-    params.require(:store).permit(:name)
+    params.require(:store).permit(:name, :description, :user_id)
   end
 end
