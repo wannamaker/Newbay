@@ -1,27 +1,43 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { render } from '@testing-library/react'
-export default class StoreList extends Component {
-  state = {
-    update: false
-  }
 
+
+export default class StoreList extends Component {
+  
+  handleStoreChange = (e) => {
+    
+    e.preventDefault()
+     const { name, value } = e.target;
+     this.setState({
+       [name]: value
+     })
+  }
+  
   render() {
+    
+    const id = this.props.currentUser.id
+    console.log(id)
+    const store = this.props.stores.filter(ele => ele.user_id === id)
+    console.log(this.props.stores);
+    
     return (
       <div>
         <h2>Your Store(s)</h2>
-        {this.props.stores.map(store => (
-          <Link to={`store/${store.id}`}>
-            <p key={store.id}>{store.name} <button onClick={this.props.updateStore}>Update Store</button>
-              {this.state.update &&
-                <form action="">
-                  <input type="text" name="name" placeholder="Store name" value={this.state.name} onChange={this.handleStoreChange} />
-                  <input type="text" name="description" placeholder="description name" value={this.state.description} onChange={this.handleStoreChange} />
-                  <button>Submit</button>
-                </form>
-              }
-              <button onClick={this.props.deleteStore}>Delete Store</button></p>
-          </Link>
+        {store.map(store => (
+           <React.Fragment key={store.id}>
+          <Link to={`/store/${store.id}`}>
+              {store.name}
+            </Link>
+            <Link to={`/store/${store.id}/update`}>
+              Update Store
+              </Link>
+            <button onClick={() => this.props.handleStoreDelete(store.id)}>Delete</button>
+            <br />
+            <br />
+            
+           </React.Fragment>
+          
         ))}
         
       </div>

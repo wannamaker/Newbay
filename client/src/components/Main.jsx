@@ -8,6 +8,7 @@ import Signout from './Signout'
 import ManageStore from './ManageStore'
 import { createStore } from '../services/stores'
 import StoreDetails from './StoreDetails'
+import UpdateStore from './UpdateStore'
 
 class Main extends Component {
   state = {
@@ -24,13 +25,17 @@ class Main extends Component {
       <div className="App">
         {/* <h1>Hello Rails</h1> */}
         <Switch>
-        <Route exact path="/" component={Home} />
-          {/* <Route path="/stores" component={ManageStore} currentUser={this.currentUser}/> */}
+          <Route exact path="/" render={(props) => (
+            <Home
+              {...props}
+              toggleLogin={this.props.toggleLogin} currentUser={this.props.currentUser} handleLogin={this.props.handleLogin}
+            />
+            )}/>
           <Route path="/stores" render={(props) => (
             <ManageStore
               {...props}
               currentUser={this.props.currentUser} handleStoreSubmit={this.props.handleStoreSubmit}
-              fetchStores={this.props.fetchStores} stores={this.props.stores}
+              fetchStores={this.props.fetchStores} stores={this.props.stores} handleStoreDelete= {this.props.handleStoreDelete}
             />
           )}/>
         <Route exact path="/signup" render={(props) => (
@@ -52,12 +57,18 @@ class Main extends Component {
               handleLogout={handleLogout}
             />
           )} /> 
-          <Route path='/store/:id' render={(props) => (
+          <Route exact path='/store/:id' render={(props) => (
             <StoreDetails
               {...props}
               fetchStores={this.props.fetchStores} stores={this.props.stores} handleSubmitProduct={this.props.handleSubmitProduct}
             />
           )} />
+          <Route path='/store/:id/update' render={(props) => (
+            <UpdateStore
+              {...props}
+              handleUpdateStore={this.props.handleUpdateStore} updateStore={this.updateStore}
+            />
+          )}/>
         </Switch>
       </div>
     );

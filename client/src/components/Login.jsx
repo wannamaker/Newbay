@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import './Login.css'
 
 export default class Login extends Component {
   state = {
@@ -14,40 +15,53 @@ export default class Login extends Component {
     })
   }
 
+  closeModal = (e) => {
+    if (e.target.className === 'login-container') {
+      this.props.toggleModal()
+    }
+  }
+
   render() {
     const { email, password } = this.state;
     const { handleLogin, history } = this.props;
 
     return (
+      <div className="login-container" onClick={this.closeModal}>
+        <div className="form-container">
       <form onSubmit={(e) => {
         e.preventDefault();
         handleLogin(this.state);
-        history.push('/')
-      }}>
+        // history.push('/')
+        this.props.toggleModal()
+          }}
+          className="form-login"
+          >
         <h3>Login</h3>
-        <label>
-          email:
           <input
             type="text"
+            placeholder="email"
             name="email"
             value={email}
             onChange={this.handleChange}
+            className="input-login"
           />
-        </label>
-        <br />
-        <label>
-          Password:
+       
           <input
             type="password"
+            placeholder="password"
             name="password"
             value={password}
             onChange={this.handleChange}
+            className="input-login"  
           />
-        </label>
-        <br />
-        <Link to='/signup'>Register</Link>
-        <button>Submit</button>
-      </form>
+          <button className="button-login">Submit</button>
+             <div className="link-register">
+            <Link to='/signup' className="link-register">Register new account?</Link>
+            </div>
+          
+          </form>
+          </div>
+    </div>
     )
   }
 }

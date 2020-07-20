@@ -3,14 +3,15 @@ import Main from './components/Main'
 
 import Nav from './components/shared/Nav'
 import { loginUser, registerUser, removeToken, verifyUser } from './services/auth'
-import { createStore, getUserStores, getStores } from './services/stores'
+import { createStore, getUserStores, getStores, updateStore, deleteStore } from './services/stores'
 import { createProduct, getProducts } from './services/products'
 import { withRouter } from 'react-router-dom';
 
 class App extends Component {
   state = {
-    currentUser: null,
-    stores:[]
+    currentUser: {},
+    stores: [],
+    toggleLogin: true
   }
 
   componentDidMount() {
@@ -19,7 +20,10 @@ class App extends Component {
 
   handleLogin = async (userData) => {
     const currentUser = await loginUser(userData);
-    this.setState({ currentUser })
+    this.setState(prevState =>({
+      currentUser: currentUser,
+      toggleLogin: !prevState.toggleLogin
+    }))
   }
 
   handleSignup = async (userData) => {
@@ -29,7 +33,8 @@ class App extends Component {
 
   handleLogout = () => {
     this.setState({
-      currentUser: null
+      currentUser: null,
+      toggleLogin: true
     })
     localStorage.removeItem('authToken');
     removeToken();
@@ -55,6 +60,17 @@ class App extends Component {
     const product = await createProduct (id, productData)
   }
 
+  handleUpdateStore = async (id, storeData) => {
+    
+    const store = await updateStore(id, storeData)
+  }
+
+  handleStoreDelete = async (id) => {
+    const store = await deleteStore(id)
+    const stores = this.state.stores.filter(ele => ele.id !== id)
+    this.setState({stores})
+  }
+
   render() {
     return (
       <div>
@@ -71,6 +87,10 @@ class App extends Component {
           fetchStores={this.fetchStores}
           stores={this.state.stores}
           handleSubmitProduct={this.handleSubmitProduct}
+          handleUpdateStore={this.handleUpdateStore}
+          updateStore={this.updateStore}
+          handleStoreDelete={this.handleStoreDelete}
+          toggleLogin={this.state.toggleLogin}
         />
       </div>
     )

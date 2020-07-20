@@ -7,7 +7,8 @@ export default class ManageStore extends Component {
   state = {
     user_id: '',
     name: '',
-    description: ''
+    description: '',
+    createStore: false
   }
   
   handleStoreChange = (e) => {
@@ -26,7 +27,8 @@ export default class ManageStore extends Component {
     handleStoreSubmit = (e) => {
       e.preventDefault()
 
-      this.props.handleStoreSubmit(this.state)
+      // this.props.handleStoreSubmit(this.state)
+      this.props.handleStoreSubmit({user_id: this.state.user_id,  name: this.state.name, description: this.state.description})
     }
   
   render() {
@@ -40,27 +42,29 @@ return (
         <br />
         <br />
     <br />
-    <StoreList stores={this.props.stores} />
+    <StoreList stores={this.props.stores} handleStoreDelete= {this.props.handleStoreDelete} currentUser={this.props.currentUser} />
     
 
-    <button>Create Store</button>
+    <button onClick={() => this.setState({createStore: !this.state.createStore})}>Create new store</button>
     <br />
-        <br />
-    <form onSubmit={this.handleStoreSubmit}>
+     
+    <br />
+    {this.state.createStore &&
+      <form onSubmit={this.handleStoreSubmit}>
         <label>
-        Store name 
-            <input type="text" name="name" value={this.state.name} onChange={this.handleStoreChange}/>
-      </label>
-      <label>
-          Store Description  
+          Store name
+            <input type="text" name="name" value={this.state.name} onChange={this.handleStoreChange} />
+        </label>
+        <label>
+          Store Description
           {/* <textarea  cols="30" rows="4" name="description" /> */}
-          <input type="text" name="description" value={this.state.description} onChange={this.handleStoreChange}/>
-      </label>
+          <input type="text" name="description" value={this.state.description} onChange={this.handleStoreChange} />
+        </label>
       
-      <button>Submit</button>
+        <button>Submit</button>
     
-    </form>
-
+      </form>
+    }
     
       </div>
     )

@@ -6,7 +6,7 @@ class StoresController < ApplicationController
    def index
     @stores = Store.all
 
-    render json: @stores, include: :user
+    render json: @stores, include: [:user, :products]
   end
 
   # def index_by_user
@@ -17,13 +17,15 @@ class StoresController < ApplicationController
 
   # GET /stores/1
   def show
-   render json: @store
+   render json: @store, include: :products
   end
 
   # POST /stores
   def create
     @store = Store.new(store_params)
     @store.user = @current_user
+    @current_user.update(:is_a_seller => true)
+    @current_user.save
        if @store.save
            render json: @store, status: :created
         else
