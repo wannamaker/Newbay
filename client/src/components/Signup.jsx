@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import './Signup.css'
 
 export default class Signup extends Component {
   state = {
@@ -20,18 +20,23 @@ export default class Signup extends Component {
      })
    }
   
-  // handleSignup = () => {
-  //   history.push('/');
-  //  }
+  closeModal = (e) => {
+     const history = this.props.history
+    if (e.target.className === 'signup-container') {
+      // this.props.toggleModal()
+      history.push('/')
+    }
+  }
 
   render() {
     const { handleSignup, history } = this.props;
 
     return (
-      <div>
+      <div className="signup-container" onClick={this.closeModal}>
+         <div className="signup-form-container">
        <h1>Please provide your info</h1>
         {/* <form onSubmit={this.handleSignup}> */} 
-         <form onSubmit={(e) => {
+         <form className="form-login" onSubmit={(e) => {
         e.preventDefault();
         handleSignup(this.state);
         history.push('/');
@@ -43,7 +48,8 @@ export default class Signup extends Component {
                 type='text'
                 // disabled={signingUp}
                 value={this.state.first_name}
-                onChange={this.handleChange}
+              onChange={this.handleChange}
+              className="input-login"
               />
               <input
                 name='last_name'
@@ -51,7 +57,8 @@ export default class Signup extends Component {
                 type='text'
                 // disabled={signingUp}
                 value={this.state.last_name}
-                onChange={this.handleChange}
+              onChange={this.handleChange}
+              className="input-login"
               />
           
               <input
@@ -60,7 +67,8 @@ export default class Signup extends Component {
                 type='text'
                 // disabled={signingUp}
                 value={this.state.email}
-                onChange={this.handleChange}
+              onChange={this.handleChange}
+              className="input-login"
               />
               <input
                 name='password'
@@ -68,7 +76,8 @@ export default class Signup extends Component {
                 type='password'
                 // disabled={signingUp}
                 value={this.state.password}
-                onChange={this.handleChange}
+              onChange={this.handleChange}
+              className="input-login"
               />
               <input
                 name='confirmPassword'
@@ -76,11 +85,13 @@ export default class Signup extends Component {
                 type='password'
                 // disabled={signingUp}
                 value={this.state.confirmPassword}
-                onChange={this.handleChange}
+              onChange={this.handleChange}
+              className="input-login"
               />
 
-              <button>Signup</button>
+              <button className="button-login">Signup</button>
           </form>
+        </div>
       </div>
     )
   }

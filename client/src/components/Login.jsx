@@ -5,7 +5,8 @@ import './Login.css'
 export default class Login extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    showSignupModal: false
   }
 
   handleChange = (e) => {
@@ -21,6 +22,13 @@ export default class Login extends Component {
     }
   }
 
+  toggleSignupModal = () => {
+    this.setState(prevState => ({
+      showSignupModal: !prevState.showSignupModal
+    }))
+  };
+
+
   render() {
     const { email, password } = this.state;
     const { handleLogin, history } = this.props;
@@ -30,7 +38,7 @@ export default class Login extends Component {
         <div className="form-container">
       <form onSubmit={(e) => {
         e.preventDefault();
-        handleLogin(this.state);
+        handleLogin({email: this.state.email, password: this.state.password});
         // history.push('/')
         this.props.toggleModal()
           }}
@@ -56,7 +64,7 @@ export default class Login extends Component {
           />
           <button className="button-login">Submit</button>
              <div className="link-register">
-            <Link to='/signup' className="link-register">Register new account?</Link>
+            <Link to="/signup" onClick={this.toggleSignupModal} className="link-register">Register new account?</Link>
             </div>
           
           </form>

@@ -28,7 +28,10 @@ class App extends Component {
 
   handleSignup = async (userData) => {
     const currentUser = await registerUser(userData);
-    this.setState({ currentUser })
+    this.setState(prevState =>({
+      currentUser: currentUser,
+      toggleLogin: !prevState.toggleLogin
+    }))
   }
 
   handleLogout = () => {

@@ -10,7 +10,6 @@ import Login from '../Login';
 class Nav extends Component {
   state = {
     showModal: false,
-    showSignupModal: false
   }
   
   toggleModal = () => {
@@ -19,12 +18,7 @@ class Nav extends Component {
     }))
   };
 
-  toggleSignupModal = () => {
-    this.setState(prevState => ({
-      showModal: !prevState.showModal
-    }))
-  };
-
+  
   render() {
     const currentUser = this.props.currentUser;
     console.log(this.props.currentUser);
@@ -37,8 +31,8 @@ class Nav extends Component {
             toggleModal={this.toggleModal} showModal={this.state.showModal}
             handleLogin={this.props.handleLogin}
           />
-      )}
-
+        )}
+      
       <nav>
         <div className="nav">
           <NavLink className="logo" to="/"><img src={logo} alt="Logo" /></NavLink>
@@ -52,7 +46,7 @@ class Nav extends Component {
           { currentUser &&
               <div className="userName"><p>Hi {currentUser.first_name}!</p></div>
             }
-            { this.props.toggleLogin ?
+            { (this.props.toggleLogin) ?
               <Link className="link" to="/" onClick={this.toggleModal} >Login/Signup</Link> :
               <NavLink className="link" to="/signout">Signout</NavLink>
             }  

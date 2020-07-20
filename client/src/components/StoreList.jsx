@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { render } from '@testing-library/react'
+import './StoreList.css'
 
 
 export default class StoreList extends Component {
@@ -22,21 +22,32 @@ export default class StoreList extends Component {
     console.log(this.props.stores);
     
     return (
-      <div>
-        <h2>Your Store(s)</h2>
+      <div className="component-container">
+        <div className="text-manage-store">
+          <h2>Manage Your Store(s)</h2>
+        </div>
+
+        
         {store.map(store => (
-           <React.Fragment key={store.id}>
-          <Link to={`/store/${store.id}`}>
-              {store.name}
-            </Link>
-            <Link to={`/store/${store.id}/update`}>
-              Update Store
-              </Link>
-            <button onClick={() => this.props.handleStoreDelete(store.id)}>Delete</button>
-            <br />
-            <br />
-            
-           </React.Fragment>
+          <React.Fragment key={store.id} >
+            <div className="storeList-container">
+                  <div className="store-name">
+                    <Link to={`/store/${store.id}`} className="store-name-link">
+                     {store.name}
+                    </Link>
+                  </div>
+
+                  <div className="update-store">
+                     <Link to={`/store/${store.id}/update`} className="update-store">
+                       Update Store
+                     </Link>
+                  </div>
+
+                  <div>
+                      <button className="button-delete-store" onClick={() => this.props.handleStoreDelete(store.id)}>Delete Store</button>
+                  </div>
+            </div>
+          </React.Fragment>
           
         ))}
         

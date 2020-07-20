@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Nav from './shared/Nav'
 import StoreList from './StoreList'
+import './ManageStore.css'
 
 export default class ManageStore extends Component {
 
@@ -35,37 +36,33 @@ export default class ManageStore extends Component {
 return (
       <div>
         <Nav />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-    <br />
-    <StoreList stores={this.props.stores} handleStoreDelete= {this.props.handleStoreDelete} currentUser={this.props.currentUser} />
-    
+     
+    <div className={"manageStore-window"}>
+         <div className={"storeList-window"}>
+           <StoreList stores={this.props.stores} handleStoreDelete= {this.props.handleStoreDelete} currentUser={this.props.currentUser} />
+         </div>
 
-    <button onClick={() => this.setState({createStore: !this.state.createStore})}>Create new store</button>
+           <button className="button-create-store" onClick={() => this.setState({createStore: !this.state.createStore})}>Create new store</button>
     <br />
      
     <br />
     {this.state.createStore &&
       <form onSubmit={this.handleStoreSubmit}>
-        <label>
-          Store name
-            <input type="text" name="name" value={this.state.name} onChange={this.handleStoreChange} />
+        <label className="label-name">
+          Store name:
+            <input className="input-store-name" type="text" placeholder="Meaningful name" name="name" value={this.state.name} onChange={this.handleStoreChange} />
         </label>
-        <label>
-          Store Description
+        <label className="label-description">
+          Store Description:
           {/* <textarea  cols="30" rows="4" name="description" /> */}
-          <input type="text" name="description" value={this.state.description} onChange={this.handleStoreChange} />
+          <input className="input-store-description" type="text" placeholder="Meaningful description" name="description" value={this.state.description} onChange={this.handleStoreChange} />
         </label>
       
-        <button>Submit</button>
+        <button className="button-submit-store">Submit store</button>
     
       </form>
     }
-    
+    </div>
       </div>
     )
   }
