@@ -9,7 +9,8 @@ export default class ManageStore extends Component {
     user_id: '',
     name: '',
     description: '',
-    createStore: false
+    createStore: false,
+    stores: [],
   }
   
   handleStoreChange = (e) => {
@@ -24,6 +25,9 @@ export default class ManageStore extends Component {
 
   componentDidMount() {
     const stores = this.props.fetchStores()
+    this.setState({ stores })
+    console.log(stores);
+    
   }
     handleStoreSubmit = (e) => {
       e.preventDefault()
@@ -33,6 +37,7 @@ export default class ManageStore extends Component {
     }
   
   render() {
+  
 return (
       <div>
         <Nav />

@@ -4,18 +4,23 @@ import Main from './components/Main'
 import Nav from './components/shared/Nav'
 import { loginUser, registerUser, removeToken, verifyUser } from './services/auth'
 import { createStore, getUserStores, getStores, updateStore, deleteStore } from './services/stores'
-import { createProduct, getProducts } from './services/products'
+import { createProduct, getProducts, getProduct } from './services/products'
 import { withRouter } from 'react-router-dom';
 
 class App extends Component {
   state = {
     currentUser: {},
     stores: [],
+    products: [],
+    product: null,
     toggleLogin: true
   }
 
   componentDidMount() {
     this.handleVerify();
+    this.fetchStores();
+    this.fetchProducts();
+    this.fetchProduct();
   }
 
   handleLogin = async (userData) => {
@@ -74,6 +79,16 @@ class App extends Component {
     this.setState({stores})
   }
 
+  fetchProducts = async () => {
+    const products = await getProducts()
+    this.setState({ products })
+  }
+
+  fetchProduct = async (id) => {
+    const product = await getProduct(id)
+    this.setState({ product })
+  }
+
   render() {
     return (
       <div>
@@ -94,6 +109,9 @@ class App extends Component {
           updateStore={this.updateStore}
           handleStoreDelete={this.handleStoreDelete}
           toggleLogin={this.state.toggleLogin}
+          products={this.state.products}
+          fetchProduct={this.fetchProduct}
+          product={this.state.product}
         />
       </div>
     )

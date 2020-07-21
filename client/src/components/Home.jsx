@@ -1,6 +1,7 @@
 import React, { Component} from 'react'
 import './Home.css'
 import Layout from './shared/Layout'
+import Products from './Products';
 
 class Home extends Component {
   
@@ -12,7 +13,7 @@ class Home extends Component {
     return (
       <Layout toggleLogin={this.props.toggleLogin} currentUser={this.props.currentUser} handleLogin={this.props.handleLogin}>
         <div className="home">
-          <h1>Products to be displayed</h1>
+          <Products/>
         </div>
       </Layout>
     )

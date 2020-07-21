@@ -9,6 +9,8 @@ import ManageStore from './ManageStore'
 import { createStore } from '../services/stores'
 import StoreDetails from './StoreDetails'
 import UpdateStore from './UpdateStore'
+import ProductDetails from './ProductDetails'
+import StoreList from './StoreList'
 
 class Main extends Component {
   state = {
@@ -35,7 +37,8 @@ class Main extends Component {
             <ManageStore
               {...props}
               currentUser={this.props.currentUser} handleStoreSubmit={this.props.handleStoreSubmit}
-              fetchStores={this.props.fetchStores} stores={this.props.stores} handleStoreDelete= {this.props.handleStoreDelete}
+              fetchStores={this.props.fetchStores} stores={this.props.stores} handleStoreDelete={this.props.handleStoreDelete}
+              products={this.props.products}
             />
           )}/>
         <Route exact path="/signup" render={(props) => (
@@ -57,18 +60,36 @@ class Main extends Component {
               handleLogout={handleLogout}
             />
           )} /> 
-          <Route exact path='/store/:id' render={(props) => (
+          {this.props.stores.length > 0 && <Route exact path='/store/:id' render={(props) => (
             <StoreDetails
               {...props}
               fetchStores={this.props.fetchStores} stores={this.props.stores} handleSubmitProduct={this.props.handleSubmitProduct}
+              products={this.props.products}
+            />
+          )} />}
+
+          <Route exact path='/store/' render={(props) => (
+            <StoreList
+              {...props}
+              fetchStores={this.props.fetchStores} stores={this.props.stores} handleSubmitProduct={this.props.handleSubmitProduct}
+              products={this.props.products}
             />
           )} />
+
           <Route path='/store/:id/update' render={(props) => (
             <UpdateStore
               {...props}
-              handleUpdateStore={this.props.handleUpdateStore} updateStore={this.updateStore}
+              handleUpdateStore={this.props.handleUpdateStore} updateStore={this.updateStore} stores={this.props.stores}
             />
-          )}/>
+          )} />
+          
+          <Route path='/products/:id' render={(props) => (
+            <ProductDetails
+              {...props}
+              products={this.props.products} fetchProduct = {this.props.fetchProduct} product={this.props.product}
+            />
+          )} />
+          
         </Switch>
       </div>
     );

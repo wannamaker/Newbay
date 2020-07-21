@@ -1,8 +1,8 @@
 import api from './apiConfig'
 
-export const getProducts = async (id) => {
+export const getProducts = async () => {
   try {
-      const response = await api.get(`/stores/${id}/products`)
+      const response = await api.get(`/stores/1/products`)
       return response.data
   } catch (error) {
       throw error
@@ -17,6 +17,7 @@ export const getProduct = async id => {
       throw error
   }
 }
+
 
 export const createProduct = async (id, product_info) => {
   try {
