@@ -42,9 +42,9 @@ class StoreDetails extends Component {
         <div className="grid-container">
           <div className="product-list">
             {currentStore &&
-              <p>{currentStore.name}</p>
+              <p className="store-name">{currentStore.name}</p>
             }
-            {this.state.currentStore && <StoreProducts stores={this.props.stores} products={this.state.currentStore.products} />}
+            {this.state.currentStore && <StoreProducts stores={this.props.stores} products={this.state.currentStore.products} currentStore={this.state.currentStore} handleProductDelete={this.props.handleProductDelete} />}
                </div>
                <div className="storeDetails-container">
                  

@@ -11,7 +11,7 @@ export const getProducts = async () => {
 
 export const getProduct = async id => {
   try {
-      const response = await api.get(`/stores/store_id/products/${id}`)
+      const response = await api.get(`/products/${id}`)
       return response.data
   } catch (error) {
       throw error

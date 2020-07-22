@@ -36,7 +36,7 @@ export default class Login extends Component {
     return (
       <div className="login-container" onClick={this.closeModal}>
         <div className="form-container">
-      <form onSubmit={(e) => {
+           <form onSubmit={(e) => {
         e.preventDefault();
         handleLogin({email: this.state.email, password: this.state.password});
         // history.push('/')

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[show update destroy]
-  before_action :authorize_request, only: %i[show create update destroy]
+  before_action :authorize_request, only: %i[create update destroy]
 
    # GET /products
    def index

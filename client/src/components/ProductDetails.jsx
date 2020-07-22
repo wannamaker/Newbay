@@ -3,12 +3,24 @@ import './ProductDetails.css';
 import Layout from './shared/Layout';
 import { Link } from 'react-router-dom';
 import { getProduct } from '../services/products'
+import AddToCart from './AddToCart';
 
 export default class ProductDetails extends Component {
        
   state = {
-    product: null
-    }
+    product: null,
+    showModal: false,
+    id: '',
+    cart: 0
+  }
+  
+  toggleMo = () => {
+    const incremCart = this.state.cart + 1
+    this.setState(prevState => ({
+      showModal: !prevState.showModal,
+      cart: incremCart
+    }))
+  };
 
    componentDidMount = async() => {
     let { id } = this.props.match.params
@@ -21,29 +33,41 @@ export default class ProductDetails extends Component {
          description: product.description,
          images: product.images,
          price: product.price
-       }
+       },
+       id: id
      })
 }
 
 
   render() {
+    const { product } = this.state
     return (
       <div>
         <Layout>
-          { this.product &&
+          {
+            this.state.showModal && <AddToCart toggleMo={this.toggleMo} showModal={this.showModal} id={this.state.id} />
+           }
+         
+          {product &&
+            <>
+            {/* // <div className="incremCart">{this.state.incremCart}</div> */}
             <div className="product-detail">
-              <img className="product-detail-image" src={this.product.images} alt={this.product.name} />
-              <div className="detail">
-                <div className="name">{this.product.name}</div>
-                <div className="price">{this.product.price}</div>
-                <div className="description">{this.product.description}</div>
+            
+                 <div>
+                     <img className="product-detail-image" src={product.images} alt={product.name} />
+                     <div className="price">${product.price}</div>
+                  </div>
+                   
+                       <div className="detail">
+                           <div className="prod-details-name">{product.name}</div>
+                           <div className="description">{product.description}</div>
                        
-                <div className="button-container">
-                  <button className="button-add-to-card"><Link className="link" to='/added-to-cart'>Add to cart</Link></button>
-                </div>
-              </div>
-            </div>
-          }
+                           <div className="button-container">
+                             <button className="button-add-to-card" onClick={this.toggleMo}><Link className="link-prod-detail" to={`/products/${this.state.id}`}>Add to cart</Link></button>
+                          </div>
+                        </div>
+             </div>
+         </> }
         </Layout>
       </div>
     )

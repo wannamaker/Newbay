@@ -11,6 +11,7 @@ import StoreDetails from './StoreDetails'
 import UpdateStore from './UpdateStore'
 import ProductDetails from './ProductDetails'
 import StoreList from './StoreList'
+import AddToCart from './AddToCart'
 
 class Main extends Component {
   state = {
@@ -64,7 +65,7 @@ class Main extends Component {
             <StoreDetails
               {...props}
               fetchStores={this.props.fetchStores} stores={this.props.stores} handleSubmitProduct={this.props.handleSubmitProduct}
-              products={this.props.products}
+              products={this.props.products} handleProductDelete={this.props.handleProductDelete}
             />
           )} />}
 
@@ -72,7 +73,7 @@ class Main extends Component {
             <StoreList
               {...props}
               fetchStores={this.props.fetchStores} stores={this.props.stores} handleSubmitProduct={this.props.handleSubmitProduct}
-              products={this.props.products}
+              products={this.props.products} 
             />
           )} />
 
@@ -90,6 +91,13 @@ class Main extends Component {
             />
           )} />
           
+          <Route path='/products/:id/to-cart' render={(props) => (
+            <AddToCart
+              {...props}
+            />
+          )}/>
+          {/* <Route path='/products/:id/to-cart' component={AddToCart}/> */}
+
         </Switch>
       </div>
     );

@@ -4,7 +4,7 @@ import Main from './components/Main'
 import Nav from './components/shared/Nav'
 import { loginUser, registerUser, removeToken, verifyUser } from './services/auth'
 import { createStore, getUserStores, getStores, updateStore, deleteStore } from './services/stores'
-import { createProduct, getProducts, getProduct } from './services/products'
+import { createProduct, getProducts, getProduct, deleteProduct } from './services/products'
 import { withRouter } from 'react-router-dom';
 
 class App extends Component {
@@ -56,6 +56,8 @@ class App extends Component {
 
   handleStoreSubmit = async (storeData) => {
     const store = await createStore(storeData)
+    const stores = [...this.state.stores, store]
+    this.setState({stores})
   }
 
   fetchStores = async () => {
@@ -65,18 +67,28 @@ class App extends Component {
   }
 
   handleSubmitProduct = async (id, productData) => {
-    const product = await createProduct (id, productData)
+    const product = await createProduct(id, productData)
+    const products = [...this.state.products, product]
+    this.setState({products})
   }
 
   handleUpdateStore = async (id, storeData) => {
     
     const store = await updateStore(id, storeData)
+    const stores = [...this.state.stores, store]
+    this.setState({stores})
   }
 
   handleStoreDelete = async (id) => {
     const store = await deleteStore(id)
     const stores = this.state.stores.filter(ele => ele.id !== id)
     this.setState({stores})
+  }
+
+  handleProductDelete = async (id) => {
+    const product = await deleteProduct(id)
+    const products = this.state.products.filter(ele => ele.id !== id)
+    this.setState({products})
   }
 
   fetchProducts = async () => {
@@ -112,6 +124,7 @@ class App extends Component {
           products={this.state.products}
           fetchProduct={this.fetchProduct}
           product={this.state.product}
+          handleProductDelete={this.handleProductDelete}
         />
       </div>
     )

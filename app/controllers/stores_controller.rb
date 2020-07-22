@@ -24,8 +24,10 @@ class StoresController < ApplicationController
   def create
     @store = Store.new(store_params)
     @store.user = @current_user
-    @current_user.update(:is_a_seller => true)
-    @current_user.save
+    @userStore = User.find(@current_user.id)
+    @userStore.update(is_a_seller:  true)
+    @userStore.save
+    @current_user
        if @store.save
            render json: @store, status: :created
         else
