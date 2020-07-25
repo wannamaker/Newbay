@@ -115,7 +115,7 @@ product1 = Product.create(
   name: 'Samsung 4k OLED TV',
   description: '55" Class 4k LED tv',
   store_id: store1.id,
-  images: 'https://content.abt.com/image.php/5-OLED55B9.jpg?image=/images/products/BDP_Images/5-OLED55B9.jpg&canvas=1&quality=80&min_w=600&min_h=400',
+  images: 'https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6331/6331760_sd.jpg',
   price: '899',
   quantity: 2
  )
